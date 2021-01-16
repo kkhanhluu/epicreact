@@ -1,9 +1,6 @@
-// Lifting state
-// http://localhost:3000/isolated/final/03.js
-
 import * as React from 'react'
 
-function Name({name, onNameChange}) {
+const Name = ({name, onNameChange}) => {
   return (
     <div>
       <label htmlFor="name">Name: </label>
