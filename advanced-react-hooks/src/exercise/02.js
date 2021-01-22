@@ -27,8 +27,31 @@ function pokemonInfoReducer(state, action) {
   }
 }
 
-function useAsync(asyncCallback, initialState) {
-  const [state, dispatch] = React.useReducer(pokemonInfoReducer, initialState)
+function useSafeDispatch(unsafeDispatch) {
+  const mountedRef = React.useRef(false)
+
+  React.useEffect(() => {
+    mountedRef.current = true
+    return () => (mountedRef.current = false)
+  })
+
+  return React.useCallback(
+    (...args) => {
+      if (mountedRef.current) {
+        unsafeDispatch(...args)
+      }
+    },
+    [unsafeDispatch],
+  )
+}
+
+function useAsync(initialState) {
+  const [state, unsafeDispatch] = React.useReducer(
+    pokemonInfoReducer,
+    initialState,
+  )
+
+  const dispatch = useSafeDispatch(unsafeDispatch)
 
   const run = React.useCallback(promise => {
     dispatch({type: 'pending'})
@@ -46,14 +69,7 @@ function useAsync(asyncCallback, initialState) {
   return {...state, run}
 }
 function PokemonInfo({pokemonName}) {
-  const fetchPokemonCallback = React.useCallback(() => {
-    if (!pokemonName) {
-      return
-    }
-    return fetchPokemon(pokemonName)
-  }, [pokemonName])
-
-  const state = useAsync(fetchPokemonCallback, {
+  const state = useAsync({
     status: pokemonName ? 'pending' : 'idle',
     data: null,
     error: null,
