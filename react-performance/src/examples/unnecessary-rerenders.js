@@ -1,6 +1,7 @@
 // http://localhost:3000/isolated/examples/unnecessary-rerenders.js
 
 import * as React from 'react'
+import Main from './code-splitting/main'
 
 function CountButton({count, onClick}) {
   return <button onClick={onClick}>{count}</button>
@@ -20,13 +21,14 @@ function Example() {
   const increment = () => setCount(c => c + 1)
   return (
     <div>
-      <div>
+      {/* <div>
         <CountButton count={count} onClick={increment} />
       </div>
       <div>
         <NameInput name={name} onNameChange={setName} />
       </div>
-      {name ? <div>{`${name}'s favorite number is ${count}`}</div> : null}
+      {name ? <div>{`${name}'s favorite number is ${count}`}</div> : null} */}
+      <Main />
     </div>
   )
 }
