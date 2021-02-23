@@ -1,0 +1,25 @@
+{
+  "name": "epicreact",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kkhanhluu/epicreact.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kkhanhluu/epicreact/issues"
+  },
+  "homepage": "https://github.com/kkhanhluu/epicreact#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "proxy": "http://localhost:5454"
+}

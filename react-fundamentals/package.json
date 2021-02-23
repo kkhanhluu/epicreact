@@ -77,5 +77,7 @@
   "author": "Kent C. Dodds <me@kentcdodds.com> (https://kentcdodds.com/)",
   "bugs": {
     "url": "https://github.com/kentcdodds/react-fundamentals/issues"
-  }
+  },
+  "proxy": "http://localhost:5454/react-fundamentals/",
+  "homepage": "/react-fundamentals"
 }
